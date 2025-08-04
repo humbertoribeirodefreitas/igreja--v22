@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/png" href="assets/img/admac.png">
+    <link rel="shortcut icon" href="assets/img/admac.png" type="image/x-icon">
+    <title>Igreja Admac</title>
+    <style>
+      html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box;
+      }
+      .navbar-nav {
+        justify-content: flex-start !important;
+        width: auto;
+        display: flex !important;
+      }
+      .navbar-nav .nav-link, .navbar-nav .dropdown-toggle, .navbar-nav .btn {
+        padding-left: 0.3rem !important;
+        padding-right: 0.3rem !important;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+      }
+      .navbar-nav .btn {
+        margin-left: 0.3rem !important;
+      }
+      .navbar .d-flex.align-items-center {
+        margin-left: auto !important;
+      }
+      /* Suporte para dropdown-submenu Bootstrap 5 */
+      .dropdown-submenu {
+        position: relative;
+      }
+      .dropdown-submenu > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -0.125rem;
+      }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="./index.html">
+          <img src="assets/img/admac.png" alt="Logo ADMAC" width="40" height="40" class="me-2" style="object-fit:contain;">
+          Igreja Admac
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-3">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="ministeriosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Ministérios
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="ministeriosDropdown">
+                <li><a class="dropdown-item" href="pages/intercessao.html">Intercessão</a></li>
+                <li><a class="dropdown-item" href="pages/homens.html">Homens</a></li>
+                <li><a class="dropdown-item" href="pages/mulheres.html">Mulheres</a></li>
+                <li><a class="dropdown-item" href="pages/jovens.html">Jovens</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="kidsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Kids
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="kidsDropdown">
+                <li><a class="dropdown-item" href="pages/kids.html">Página Kids</a></li>
+                <li><a class="dropdown-item" href="pages/lares.html">Lares</a></li>
+                <li><a class="dropdown-item" href="pages/louvor.html">Louvor</a></li>
+                <li><a class="dropdown-item" href="pages/retiro.html">Retiro</a></li>
+                <li><a class="dropdown-item" href="pages/edb.html">EDB</a></li>
+                <li><a class="dropdown-item" href="pages/social.html">Área Social</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="galeriaDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Galeria
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="galeriaDropdown">
+                <li><a class="dropdown-item" href="pages/galeria.html">Todas as Fotos</a></li>
+                <li><a class="dropdown-item" href="pages/galeria-intercessao.html">Galeria Intercessão</a></li>
+                <li><a class="dropdown-item" href="pages/galeria-homens.html">Galeria Homens</a></li>
+                <li><a class="dropdown-item" href="pages/galeria-mulheres.html">Galeria Mulheres</a></li>
+                <li><a class="dropdown-item" href="pages/galeria-jovens.html">Galeria Jovens</a></li>
+                <li><a class="dropdown-item" href="pages/galeria-kids.html">Galeria Kids</a></li>
+                <li><a class="dropdown-item" href="pages/galeria-social.html">Galeria Social</a></li>
+                <li><a class="dropdown-item" href="pages/galeria-lares.html">Galeria Lares</a></li>
+                <li><a class="dropdown-item" href="pages/galeria-retiro.html">Galeria Retiro</a></li>
+                <li><a class="dropdown-item" href="pages/galeria-edb.html">Galeria EDB</a></li>
+                <li><hr class="dropdown-divider"></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/midia.html">Mídia</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-primary ms-2 d-flex align-items-center justify-content-center" href="cursos/cursos/index.html" title="Cursos" style="padding: 0.4rem 0.7rem; font-size: 1.2rem;">
+                <i class="fas fa-graduation-cap"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-info ms-2 d-flex align-items-center justify-content-center" href="./index.html" title="Página Inicial" style="padding: 0.4rem 0.7rem; font-size: 1.2rem;">
+                <i class="fas fa-home"></i>
+              </a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center ms-auto">
+            <div class="social-links me-3">
+              <a href="https://www.instagram.com/admac.sede/?igsh=azEwaWdqZmVxeWJ0#" class="text-light me-2" target="_blank"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.youtube.com/live/R3IjLXJTjgI?si=jegsIdEOh3vjbRLx" class="text-light me-2" target="_blank"><i class="fab fa-youtube"></i></a>
+              <a href="https://www.facebook.com/roberto.silva.228792/" class="text-light me-2" target="_blank"><i class="fab fa-facebook"></i></a>
+              <a href="https://wa.me/5561993241084?text=Olá! Gostaria de fazer um pedido de oração." class="text-light me-2" target="_blank"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://open.spotify.com/show/2lzm9pXbj4PCoWcxsFzDtf" class="text-light me-2" target="_blank"><i class="fab fa-spotify"></i></a>
+            </div>
+            <button class="btn btn-outline-light me-2" id="themeToggle">
+              <i class="fas fa-moon"></i>
+            </button>
+                         <a href="https://wa.me/5561993241084?text=Olá! Gostaria de fazer um pedido de oração." class="btn btn-success me-2">
+               <i class="fab fa-whatsapp"></i> Pedido de Oração
+             </a>
+                           <a href="admin/login.html" class="btn btn-outline-light" title="Painel Administrativo">
+                <i class="fas fa-user-shield"></i>
+              </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Carrossel -->
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- ... existing carousel code ... -->
+    </div>
+
+    <!-- Carrossel de Mensagens -->
+    <div id="messagesCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#messagesCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#messagesCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#messagesCarousel" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#messagesCarousel" data-bs-slide-to="3"></button>
+            <button type="button" data-bs-target="#messagesCarousel" data-bs-slide-to="4"></button>
+            <button type="button" data-bs-target="#messagesCarousel" data-bs-slide-to="5"></button>
+            <button type="button" data-bs-target="#messagesCarousel" data-bs-slide-to="6"></button>
+            <button type="button" data-bs-target="#messagesCarousel" data-bs-slide-to="7"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./assets/img/bem vindo.jpg" class="d-block w-100" alt="Mensagem 1" style="height: 400px; object-fit: contain;">
+                <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px;">
+                    <h3>Mensagens Inspiradoras</h3>
+                    <p>Ouça as mensagens que transformam vidas</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./assets/img/estudo biblico.jpg" class="d-block w-100" alt="Mensagem 2" style="height: 400px; object-fit: contain;">
+                <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px;">
+                    <h3>Estudos Bíblicos</h3>
+                    <p>Aprofunde seu conhecimento na palavra de Deus</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./assets/img/banner2.png" class="d-block w-100" alt="Mensagem 3" style="height: 400px; object-fit: contain;">  <!-- Corrigido o caminho e usando banner2.png como exemplo -->
+                <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px;">
+                    <h3>Louvor e Adoração</h3>
+                    <p>Momentos especiais de louvor e adoração</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./assets/img/culto de louvor.jpg" class="d-block w-100" alt="Culto de Louvor" style="height: 400px; object-fit: contain;">
+                <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px;">
+                    <h3>Culto de Louvor</h3>
+                    <p>Participe dos nossos cultos de louvor.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./assets/img/culto1.jpg.png" class="d-block w-100" alt="Culto" style="height: 400px; object-fit: contain;">
+                <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px;">
+                    <h3>Nossos Cultos</h3>
+                    <p>Venha celebrar conosco!</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./assets/img/CULTO LARES.png" class="d-block w-100" alt="Evento Hoje" style="height: 400px; object-fit: contain;">
+                <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px;">
+                    <h3>Evento Especial</h3>
+                    <p>Confira nossa programação especial.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./assets/img/CULTO LARES.png" class="d-block w-100" alt="Programação" style="height: 400px; object-fit: contain;">
+                <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px;">
+                    <h3>Nossa Programação</h3>
+                    <p>Fique por dentro de tudo que acontece.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./assets/img/oraçao1.png" class="d-block w-100" alt="Oração" style="height: 400px; object-fit: contain;">
+                <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px;">
+                    <h3>Momentos de Oração</h3>
+                    <p>Junte-se a nós em oração.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#messagesCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#messagesCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Próximo</span>
+        </button>
+    </div>
+
+    <!-- Seção do Spotify -->
+    <section class="container my-5 py-5" style="background: linear-gradient(to bottom, #f8f9fa, #ffffff); border-radius: 15px; box-shadow: 0 2px 15px rgba(0,0,0,0.05);">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="text-center mb-4">
+                    <i class="bi bi-spotify" style="font-size: 2.5rem; color: #1DB954;"></i>
+                    <h2 class="mt-3 mb-2" style="color: #1DB954; font-weight: 600;">Mensagens da ADMAC</h2>
+                    <p class="text-muted">Ouça as mensagens e estudos bíblicos da nossa igreja</p>
+                </div>
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-0">
+                        <iframe src="https://open.spotify.com/embed/show/2lzm9pXbj4PCoWcxsFzDtf" 
+                                width="100%" 
+                                height="400" 
+                                frameborder="0" 
+                                allowtransparency="true" 
+                                allow="encrypted-media"
+                                style="border-radius: 8px;">
+                        </iframe>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="https://open.spotify.com/show/2lzm9pXbj4PCoWcxsFzDtf" target="_blank" class="btn btn-outline-success">
+                        <i class="bi bi-spotify me-2"></i>Abrir no Spotify
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossos Ministérios -->
+    <section class="container my-5">
+        <!--<img src="#" class="img-fluid mb-4 d-block mx-auto" alt="Banner Programações" style="max-width: 600px; border-radius: 8px; object-fit: cover;">--->
+        <h2 class="text-center mb-5">Nossos Ministérios</h2>
+        <div class="row g-4">
+            <!-- Intercessão -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm hover-card" style="padding-top: 0; background: #fff; border-radius: 16px;">
+                    <img src="./assets/img/Intercessão.jpg" class="img-fluid mb-4 d-block mx-auto" alt="Banner Programações" style="max-width: 220px; max-height: 180px; width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
+                    <div class="card-body text-center p-4">
+                        <h3 class="card-title h4 mb-3">Intercessão</h3>
+                        <div class="program-item mb-3">
+                            <p class="text-muted mb-3">Ministério de oração e intercessão pela igreja e pela cidade.</p>
+                            <a href="pages/intercessao.html" class="btn btn-outline-success">Saiba mais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Homens -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm hover-card" style="padding-top: 0; background: #fff; border-radius: 16px;">
+                    <img src="./assets/img/homem.png" class="img-fluid mb-4 d-block mx-auto" alt="Banner Programações" style="max-width: 220px; max-height: 180px; width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
+                    <div class="card-body text-center p-4">
+                        <h3 class="card-title h4 mb-3">Homens</h3>
+                        <div class="program-item mb-3">
+                            <p class="text-muted mb-3">Ministério voltado para o crescimento espiritual dos homens.</p>
+                            <a href="pages/homens.html" class="btn btn-outline-success">Saiba mais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mulheres -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm hover-card" style="padding-top: 0; background: #fff; border-radius: 16px;">
+                    <img src="./assets/img/mulheres.jpg" class="img-fluid mb-4 d-block mx-auto" alt="Banner Programações" style="max-width: 220px; max-height: 180px; width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
+                    <div class="card-body text-center p-4">
+                        <h3 class="card-title h4 mb-3">Culto de Mulheres</h3>
+                        <div class="program-item mb-3">
+                            <p class="text-muted mb-3">Encontros especiais para edificação, comunhão e fortalecimento das mulheres na fé.</p>
+                            <a href="pages/mulheres.html" class="btn btn-outline-success">Saiba mais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jovens -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm hover-card" style="padding-top: 0; background: #fff; border-radius: 16px;">
+                    <img src="./assets/img/midia1.jpg" class="img-fluid mb-4 d-block mx-auto" alt="Banner Programações" style="max-width: 220px; max-height: 180px; width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
+                    <div class="card-body text-center p-4">
+                        <h3 class="card-title h4 mb-3">Jovens</h3>
+                        <div class="program-item mb-3">
+                            <p class="text-muted mb-3">Ministério jovem com atividades dinâmicas e relevantes.</p>
+                            <a href="pages/jovens.html" class="btn btn-outline-success">Saiba mais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kids -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm hover-card" style="padding-top: 0; background: #fff; border-radius: 16px;">
+                    <img src="./assets/img/kidis.jpg" class="img-fluid mb-4 d-block mx-auto" alt="Banner Programações" style="max-width: 220px; max-height: 180px; width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
+                    <div class="card-body text-center p-4">
+                        <h3 class="card-title h4 mb-3">Kids</h3>
+                        <div class="program-item mb-3">
+                            <p class="text-muted mb-3">Ministério infantil com ensino bíblico e diversão.</p>
+                            <a href="pages/kids.html" class="btn btn-outline-success">Saiba mais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <!-- EBD -->
+             <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm hover-card" style="padding-top: 0; background: #fff; border-radius: 16px;">
+                    <img src="./assets/img/estudo biblico.jpg" class="img-fluid mb-4 d-block mx-auto" alt="Banner Programações" style="max-width: 220px; max-height: 180px; width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
+                    <div class="card-body text-center p-4">
+                        <h3 class="card-title h4 mb-3">EBD</h3>
+                        <div class="program-item mb-3">
+                            <p class="text-muted mb-3">Escola Bíblica Dominical para todas as idades.</p>
+                            <a href="pages/edb.html" class="btn btn-outline-success">Saiba mais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Revista Admac -->
+    <section class="container my-5">
+        <h2 class="text-center mb-5">Revista Admac</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="card border-0 shadow-lg hover-card" style="border-radius: 16px; overflow: hidden;">
+                    <div class="card-body p-0">
+                        <div class="position-relative">
+                            <img src="./assets/img/admac.png" class="img-fluid w-100" alt="Revista Admac" style="height: 300px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="background: rgba(0,0,0,0.3);">
+                                                             <div class="text-center text-white">
+                                     <h3 class="mb-3" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Revista Admac</h3>
+                                     <p class="mb-4" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.7);">Conheça nossa revista e fique por dentro das novidades da igreja</p>
+                                     <div class="d-flex gap-2 justify-content-center flex-wrap">
+                                         <a href="#" class="btn btn-light btn-lg px-4" style="font-weight: 600;" onclick="visualizarPDF()">
+                                             <i class="fas fa-eye me-2"></i>Visualizar PDF
+                                         </a>
+                                         <a href="#" class="btn btn-outline-light btn-lg px-4" style="font-weight: 600;">
+                                             <i class="fas fa-book-open me-2"></i>Ler Revista
+                                         </a>
+                                     </div>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="card-title mb-3">Última Edição</h4>
+                            <p class="card-text text-muted mb-3">
+                                A revista Admac traz mensagens inspiradoras, testemunhos, programações e muito mais para edificar sua vida espiritual.
+                            </p>
+                                                         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                                 <small class="text-muted">
+                                     <i class="fas fa-calendar-alt me-1"></i>
+                                     Edição Atual
+                                 </small>
+                                 <div class="d-flex gap-2">
+                                     <a href="#" class="btn btn-outline-primary btn-sm" onclick="visualizarPDF()">
+                                         <i class="fas fa-eye me-1"></i>Visualizar
+                                     </a>
+                                     <a href="#" class="btn btn-outline-success btn-sm" onclick="downloadPDF()">
+                                         <i class="fas fa-download me-1"></i>Download
+                                     </a>
+                                 </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossos Programaçoes -->
+    <!--<section class="container my-5">
+        <div class="row g-4">
+            ... (cards repetidos removidos) ...
+        </div>
+    </section>-->
+      <!-- Programação semana-->
+    <!-- Aviso para Igreja -->
+    <div class="container my-4">
+        <div class="card shadow-lg border-0" style="border-radius: 1.5rem; background: linear-gradient(135deg, #fffbe6 60%, #ffe082 100%);">
+            <div class="card-body d-flex flex-column align-items-center p-4">
+                <div style="background: #fff; border-radius: 50%; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 10px; margin-bottom: 1rem; width: 110px; height: 110px; display: flex; align-items: center; justify-content: center;">
+                    <img src="./assets/img/aviso1.jpg" alt="Aviso Igreja" class="img-fluid" style="max-width: 90px; max-height: 90px; border-radius: 50%; object-fit: cover; cursor:pointer;" id="avisoImg">
+                </div>
+                <h5 class="card-title mb-2" style="font-weight: bold; font-size: 1.5rem; color: #ff9800; letter-spacing: 1px; text-shadow: 0 2px 8px rgba(255,152,0,0.08);">
+                    <i class="fas fa-exclamation-triangle me-2"></i>AVISO IMPORTANTE
+                </h5>
+                <p class="card-text mb-0" style="font-size: 1.1rem; color: #333; max-width: 500px;">
+                    (AJUDE  O MAIS VELHO NAS FERRAMENTA DA IGREJA)
+                </p>
+                <div class="mt-3">
+                    <!--<a href="#" target="_blank" class="btn btn-outline-warning" style="font-weight:bold;">
+                        <i class="fas fa-image me-2"></i>Adicionar ou Visualizar Fotos do Aviso
+                    </a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- Vídeos Recentes -->
+    <section class="container my-5">
+      <h2 style="font-size:2.3rem;font-weight:600;margin-bottom:2rem;">Vídeos Recentes</h2>
+      <div class="row g-4">
+                 <div class="col-md-6">
+           <div class="card shadow-lg h-100">
+             <div class="ratio ratio-16x9">
+               <iframe src="https://www.youtube.com/embed/jt9ZbdhlA1k" title="Culto Recente" allowfullscreen></iframe>
+             </div>
+             <div class="card-body">
+               <h5 class="card-title fw-bold">Culto Recente</h5>
+               <p class="card-text">Assista ao culto mais recente transmitido ao vivo.</p>
+               <a href="https://www.youtube.com/live/jt9ZbdhlA1k?si=Y2VZdrOGFDTIReDk" target="_blank" class="btn btn-outline-primary"><i class="fab fa-youtube me-2"></i>Ver no YouTube</a>
+             </div>
+           </div>
+         </div>
+         <div class="col-md-6">
+           <div class="card shadow-lg h-100">
+             <div class="ratio ratio-16x9">
+               <iframe src="https://www.youtube.com/embed/zVsHVmOZlBI" title="Culto de Libertação" allowfullscreen></iframe>
+             </div>
+             <div class="card-body">
+               <h5 class="card-title fw-bold">Último Culto de Libertação</h5>
+               <p class="card-text">Assista ao último culto de libertação transmitido ao vivo.</p>
+               <a href="https://www.youtube.com/live/zVsHVmOZlBI?si=moupLT8oHlRqPbTS" target="_blank" class="btn btn-outline-primary"><i class="fab fa-youtube me-2"></i>Ver no YouTube</a>
+             </div>
+           </div>
+         </div>
+      </div>
+    </section>
+    <!-- Fim Vídeos Recentes -->
+    <!-- Contato -->
+    <footer class="bg-dark text-light mt-5">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contato</h5>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i> QN 516 - Samambaia, Brasília - DF, 72314-200<br>
+                        <i class="fas fa-phone"></i> (061) 993241084<br>
+                        <i class="fas fa-envelope"></i> admacdf@gmail.com
+                    </p>
+                    <a href="https://wa.me/5561993241084?text=Olá! Gostaria de fazer um pedido de oração." class="btn btn-success mt-2" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Pedido de Oração
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <h5>Redes Sociais</h5>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/admac.sede/?igsh=azEwaWdqZmVxeWJ0#" class="text-light me-3" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/live/R3IjLXJTjgI?si=jegsIdEOh3vjbRLx" class="text-light me-3" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/roberto.silva.228792/" class="text-light me-3" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/5561993241084?text=Olá! Gostaria de fazer um pedido de oração." class="text-light me-3" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://open.spotify.com/show/2lzm9pXbj4PCoWcxsFzDtf" class="text-light me-3" target="_blank"><i class="fab fa-spotify"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Links Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light">Início</a></li>
+                        <li><a href="pages/homens.html" class="text-light">Homens</a></li>
+                        <li><a href="pages/mulheres.html" class="text-light">Mulheres</a></li>
+                        <li><a href="pages/jovens.html" class="text-light">Jovens</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var avisoImg = document.getElementById('avisoImg');
+      if(avisoImg) {
+        avisoImg.addEventListener('click', function() {
+          var avisoModal = new bootstrap.Modal(document.getElementById('avisoModal'));
+          avisoModal.show();
+        });
+      }
+    });
+    </script>
+    <!-- Modal para visualizar imagem do aviso -->
+    <div class="modal fade" id="avisoModal" tabindex="-1" aria-labelledby="avisoModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark">
+          <div class="modal-header border-0">
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body text-center">
+            <img src="./assets/img/aviso1.jpg" alt="Aviso Igreja" class="img-fluid" style="max-height:400px; width:auto;">
+          </div>
+        </div>
+      </div>
+         </div>
+     
+     <!-- Modal para visualizar PDF da revista -->
+     <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+         <div class="modal-dialog modal-xl modal-dialog-centered">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title" id="pdfModalLabel">
+                         <i class="fas fa-book me-2"></i>Revista Admac
+                     </h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                 </div>
+                 <div class="modal-body p-0">
+                     <iframe id="pdfIframe" src="" width="100%" height="600px" frameborder="0"></iframe>
+                 </div>
+                 <div class="modal-footer">
+                     <a href="#" class="btn btn-outline-primary" onclick="downloadPDF()">
+                         <i class="fas fa-download me-2"></i>Download PDF
+                     </a>
+                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                 </div>
+             </div>
+         </div>
+     </div>
+     
+     <script>
+    function setCardImage(inputId, cardId, uploadBtnId) {
+        let lastFile = null;
+        document.getElementById(inputId).addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            lastFile = file;
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    document.getElementById(cardId).style.backgroundImage = `url('${ev.target.result}')`;
+                    document.getElementById(uploadBtnId).style.display = 'inline-block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        document.getElementById(uploadBtnId).addEventListener('click', function() {
+            if (!lastFile) return;
+            const formData = new FormData();
+            formData.append('image', lastFile);
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            }).then(resp => {
+                if (resp.ok) {
+                    alert('Imagem enviada com sucesso!');
+                } else {
+                    alert('Falha ao enviar imagem.');
+                }
+            }).catch(() => alert('Erro ao conectar com o servidor.'));
+        });
+    }
+         setCardImage('input-intercessao-img', 'card-intercessao', 'btn-upload-intercessao');
+     setCardImage('input-homens-img', 'card-homens', 'btn-upload-homens');
+     setCardImage('input-mulheres-img', 'card-mulheres', 'btn-upload-mulheres');
+     setCardImage('input-jovens-img', 'card-jovens', 'btn-upload-jovens');
+     setCardImage('input-kids-img', 'card-kids', 'btn-upload-kids');
+     setCardImage('input-ebd-img', 'card-ebd', 'btn-upload-ebd');
+     
+     // Função para visualizar PDF da revista
+     function visualizarPDF() {
+         // Link do Google Drive para a revista Admac
+         const pdfUrl = 'https://drive.google.com/file/d/1ISlkhSaVjWEwmEexybSQNZBt-ZQghGa5/view?pli=1';
+         
+         // Abre o PDF em uma nova aba
+         window.open(pdfUrl, '_blank');
+         
+         // Alternativa: Abre o modal com o PDF embutido
+         // const pdfModal = new bootstrap.Modal(document.getElementById('pdfModal'));
+         // document.getElementById('pdfIframe').src = pdfUrl;
+         // pdfModal.show();
+     }
+     
+     // Função para download do PDF
+     function downloadPDF() {
+         // Link do Google Drive para download da revista Admac
+         const pdfUrl = 'https://drive.google.com/file/d/1ISlkhSaVjWEwmEexybSQNZBt-ZQghGa5/view?pli=1';
+         
+         // Abre o link do Google Drive em nova aba para download
+         window.open(pdfUrl, '_blank');
+     }
+     </script>
+</body>
+</html>

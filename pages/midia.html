@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mídia - Igreja Admac</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" type="image/png" href="../assets/img/admac.png">
+    <link rel="shortcut icon" href="../assets/img/admac.png" type="image/x-icon">
+    <style>
+        .midia-hero {
+            background: linear-gradient(120deg, #232526 0%, #414345 100%);
+            color: #fff;
+            padding: 60px 0 40px 0;
+            text-align: center;
+        }
+        .midia-hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .midia-hero p {
+            font-size: 1.3rem;
+            opacity: 0.85;
+        }
+        .midia-section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #232526;
+        }
+        .midia-card {
+            border: none;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            transition: box-shadow 0.2s;
+        }
+        .midia-card:hover {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+        }
+        .midia-card .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .midia-card .btn {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        .midia-section {
+            margin-bottom: 3rem;
+        }
+        /* Fundo de toda a área principal */
+        .midia-bg {
+            background: url('../assets/img/midia.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            z-index: 0;
+        }
+        .midia-bg-overlay {
+            background: rgba(255,255,255,0.92);
+            min-height: 100vh;
+            width: 100%;
+            position: absolute;
+            top: 0; left: 0;
+            z-index: 1;
+        }
+        .midia-content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <img src="../assets/img/admac.png" alt="Logo ADMAC" width="40" height="40" class="me-2" style="object-fit:contain;">
+                Igreja Admac
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="intercessao.html">Intercessão</a></li>
+                    <li class="nav-item"><a class="nav-link" href="homens.html">Homens</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mulheres.html">Mulheres</a></li>
+                    <li class="nav-item"><a class="nav-link" href="jovens.html">Jovens</a></li>
+                    <li class="nav-item"><a class="nav-link" href="kids.html">Kids</a></li>
+                    <li class="nav-item"><a class="nav-link" href="lares.html">Lares</a></li>
+                    <li class="nav-item"><a class="nav-link" href="louvor.html">Louvor</a></li>
+                    <li class="nav-item"><a class="nav-link" href="retiro.html">Retiro</a></li>
+                    <li class="nav-item"><a class="nav-link" href="edb.html">EDB</a></li>
+                    <li class="nav-item"><a class="nav-link" href="social.html">Área Social</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="midia.html">Mídia</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero -->
+    <section class="midia-hero">
+        <div class="container">
+            <h1>Mídia</h1>
+            <p>Assista e ouça nossos cultos, mensagens e louvores. Acompanhe tudo o que Deus tem feito em nossa igreja!</p>
+        </div>
+    </section>
+    <!-- Carrossel de Imagens -->
+    <div class="midia-bg">
+      <div class="midia-bg-overlay"></div>
+      <div class="container mb-5 midia-content">
+        <div id="carouselMidiaBanners" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../assets/img/banner2.png" class="d-block w-100" alt="Banner 1" style="max-height:350px; object-fit:cover;">
+                </div>
+                <div class="carousel-item">
+                    <img src="../assets/img/bem vindo.jpg" class="d-block w-100" alt="Banner 2" style="max-height:350px; object-fit:cover;">
+                </div>
+                <div class="carousel-item">
+                    <img src="../assets/img/aviso1.jpg" class="d-block w-100" alt="Banner 3" style="max-height:350px; object-fit:cover;">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselMidiaBanners" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselMidiaBanners" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
+        </div>
+      </div>
+    </div>
+    <div class="container midia-content" style="margin-top: 40px;">
+        
+        <!-- Seção de Vídeos -->
+        <section class="midia-section" style="margin-bottom: 1.2rem;">
+            <h2 class="midia-section-title">Vídeos Recentes</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card midia-card h-100">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/0ZsaT_mg6cY" title="Pré Congresso de Mulheres - ADMAC Samambaia" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Culto Recente</h5>
+                            <p class="card-text">Assista ao culto mais recente transmitido ao vivo.</p>
+                            <a href="https://www.youtube.com/watch?v=0ZsaT_mg6cY" target="_blank" class="btn btn-outline-primary"><i class="fab fa-youtube me-2"></i>Ver no YouTube</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card midia-card h-100">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/6i8tQilOrm0" title="Culto de Libertação 26/06" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Culto de Libertação</h5>
+                            <p class="card-text">Assista ao culto de libertação transmitido ao vivo.</p>
+                            <a href="https://www.youtube.com/watch?v=6i8tQilOrm0" target="_blank" class="btn btn-outline-primary"><i class="fab fa-youtube me-2"></i>Ver no YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Playlist Spotify -->
+        <section class="midia-section">
+            <h2 class="midia-section-title">Playlist Gospel no Spotify</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow-lg">
+                        <div class="card-body">
+                            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX0OEZC3cbQmU?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="https://open.spotify.com/playlist/37i9dQZF1DX0OEZC3cbQmU" target="_blank" class="btn btn-success">
+                            <i class="fab fa-spotify me-2"></i>Ouvir no Spotify
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contato</h5>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i> QN 516 - Samambaia, Brasília - DF, 72314-200<br>
+                        <i class="fas fa-phone"></i> (061) 993241084<br>
+                        <i class="fas fa-envelope"></i> admacdf@gmail.com
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Horários dos Cultos</h5>
+                    <p>Domingo: 19h<br>
+                    Quarta: 19h30<br>
+                    Sábado: 19h</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Redes Sociais</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-2"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
