@@ -92,26 +92,36 @@
         </form>
         
         <div class="text-center mt-3">
+            <a href="#" class="text-muted text-decoration-none me-3" onclick="showForgotPassword()">
+                <i class="fas fa-key me-1"></i>Esqueceu a senha?
+            </a>
             <a href="../index.html" class="text-muted text-decoration-none">
                 <i class="fas fa-arrow-left me-1"></i>Voltar ao site
             </a>
         </div>
     </div>
 
+    <script src="js/database.js"></script>
     <script>
+        // Preencher campos com credenciais padrão
+        document.getElementById('username').value = 'admacdf@gmail.com';
+        document.getElementById('password').value = 'admac2024';
+        
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            // Credenciais de exemplo (em produção, usar backend seguro)
-            if (username === 'admin' && password === 'admac2024') {
+            // Usar banco de dados temporário
+            const authResult = databaseFunctions.authenticateUser(username, password);
+            
+            if (authResult.success) {
                 localStorage.setItem('adminLoggedIn', 'true');
-                localStorage.setItem('adminUser', username);
+                localStorage.setItem('adminUser', JSON.stringify(authResult.user));
                 window.location.href = 'dashboard.html';
             } else {
-                showAlert('Usuário ou senha incorretos!', 'danger');
+                showAlert(authResult.message, 'danger');
             }
         });
         
@@ -119,10 +129,145 @@
             const alertContainer = document.getElementById('alertContainer');
             alertContainer.innerHTML = `
                 <div class="alert alert-${type} alert-dismissible fade show" role="alert">
-                    <i class="fas fa-exclamation-triangle me-2"></i>${message}
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'} me-2"></i>${message}
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             `;
+        }
+        
+        function showForgotPassword() {
+            const modal = createForgotPasswordModal();
+            document.body.appendChild(modal);
+            const bootstrapModal = new bootstrap.Modal(modal);
+            bootstrapModal.show();
+        }
+        
+        function createForgotPasswordModal() {
+            const modal = document.createElement('div');
+            modal.className = 'modal fade';
+            modal.innerHTML = `
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">
+                                <i class="fas fa-key me-2"></i>Recuperar Senha
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-muted mb-3">Digite seu email para receber um link de recuperação de senha.</p>
+                            <form id="forgotPasswordForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="resetEmail" value="admacdf@gmail.com" required>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" onclick="sendResetEmail()">
+                                <i class="fas fa-paper-plane me-2"></i>Enviar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.addEventListener('hidden.bs.modal', function() {
+                document.body.removeChild(modal);
+            });
+            
+            return modal;
+        }
+        
+        function sendResetEmail() {
+            const email = document.getElementById('resetEmail').value;
+            const result = databaseFunctions.generatePasswordResetToken(email);
+            
+            if (result.success) {
+                // Em um sistema real, aqui seria enviado um email
+                // Por enquanto, vamos mostrar o token na tela
+                const modal = createResetPasswordModal(result.token);
+                document.body.appendChild(modal);
+                const bootstrapModal = new bootstrap.Modal(modal);
+                bootstrapModal.show();
+                
+                // Fechar modal anterior
+                bootstrap.Modal.getInstance(document.querySelector('.modal')).hide();
+            } else {
+                showAlert(result.message, 'danger');
+            }
+        }
+        
+        function createResetPasswordModal(token) {
+            const modal = document.createElement('div');
+            modal.className = 'modal fade';
+            modal.innerHTML = `
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">
+                                <i class="fas fa-lock me-2"></i>Redefinir Senha
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <strong>Token de Recuperação:</strong> ${token}
+                                <br><small class="text-muted">Este token expira em 1 hora.</small>
+                            </div>
+                            <form id="resetPasswordForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Nova Senha</label>
+                                    <input type="password" class="form-control" id="newPassword" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Confirmar Nova Senha</label>
+                                    <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" onclick="resetPassword()">
+                                <i class="fas fa-save me-2"></i>Redefinir Senha
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.addEventListener('hidden.bs.modal', function() {
+                document.body.removeChild(modal);
+            });
+            
+            return modal;
+        }
+        
+        function resetPassword() {
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const token = document.querySelector('.alert-info strong').textContent.split(': ')[1];
+            
+            if (newPassword !== confirmPassword) {
+                showAlert('As senhas não coincidem!', 'danger');
+                return;
+            }
+            
+            if (newPassword.length < 6) {
+                showAlert('A senha deve ter pelo menos 6 caracteres!', 'danger');
+                return;
+            }
+            
+            const result = databaseFunctions.resetPassword(token, newPassword);
+            
+            if (result.success) {
+                showAlert('Senha redefinida com sucesso!', 'success');
+                bootstrap.Modal.getInstance(document.querySelector('.modal')).hide();
+            } else {
+                showAlert(result.message, 'danger');
+            }
         }
         
         // Verificar se já está logado

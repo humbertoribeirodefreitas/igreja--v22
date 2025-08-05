@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" type="image/png" href="../assets/img/admac.png">
+    <title>Teste Lightbox - Igreja Admac</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <img src="../assets/img/admac.png" alt="Logo ADMAC" width="40" height="40" class="me-2" style="object-fit:contain;">
+                Igreja Admac
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="intercessao.html">Intercessão</a></li>
+                    <li class="nav-item"><a class="nav-link" href="homens.html">Homens</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mulheres.html">Mulheres</a></li>
+                    <li class="nav-item"><a class="nav-link" href="jovens.html">Jovens</a></li>
+                    <li class="nav-item"><a class="nav-link" href="kids.html">Kids</a></li>
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-outline-light me-2" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="https://wa.me/seunumero" class="btn btn-success">
+                        <i class="fab fa-whatsapp"></i> Pedido de Oração
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-4">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center mb-4">Teste da Funcionalidade Lightbox</h2>
+                <div class="alert alert-info">
+                    <h5><i class="fas fa-info-circle me-2"></i>Como usar:</h5>
+                    <ul class="mb-0">
+                        <li>Clique em qualquer card de imagem abaixo</li>
+                        <li>Use as setas ou botões para navegar</li>
+                        <li>Pressione ESC ou clique fora para fechar</li>
+                        <li>Use as teclas ← e → para navegar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grade de Fotos de Teste -->
+        <div class="row" id="gallery">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="../assets/img/hoje.jpg" class="card-img-top" alt="Teste 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Imagem de Teste 1</h5>
+                        <p class="card-text">Esta é a primeira imagem de teste para demonstrar o lightbox.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="../assets/img/hoje (2).jpg" class="card-img-top" alt="Teste 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Imagem de Teste 2</h5>
+                        <p class="card-text">Segunda imagem de teste com descrição diferente.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="../assets/img/hoje (3).jpg" class="card-img-top" alt="Teste 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Imagem de Teste 3</h5>
+                        <p class="card-text">Terceira imagem para testar a navegação entre fotos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="../assets/img/hoje (4).jpg" class="card-img-top" alt="Teste 4">
+                    <div class="card-body">
+                        <h5 class="card-title">Imagem de Teste 4</h5>
+                        <p class="card-text">Quarta imagem demonstrando o contador de posição.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="../assets/img/kidis.jpg" class="card-img-top" alt="Teste 5">
+                    <div class="card-body">
+                        <h5 class="card-title">Imagem de Teste 5</h5>
+                        <p class="card-text">Quinta imagem para testar a navegação circular.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="../assets/img/louvor.jpg" class="card-img-top" alt="Teste 6">
+                    <div class="card-body">
+                        <h5 class="card-title">Imagem de Teste 6</h5>
+                        <p class="card-text">Última imagem de teste para completar a demonstração.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Informações sobre a funcionalidade -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-cog me-2"></i>Funcionalidades Implementadas</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>✅ Funcionalidades Ativas:</h6>
+                                <ul>
+                                    <li>Modal responsivo em tela grande</li>
+                                    <li>Navegação com botões e teclas</li>
+                                    <li>Exibição de título e descrição</li>
+                                    <li>Contador de posição</li>
+                                    <li>Efeitos hover nos cards</li>
+                                    <li>Fechamento com ESC ou clique fora</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>🎨 Características Visuais:</h6>
+                                <ul>
+                                    <li>Design moderno e limpo</li>
+                                    <li>Animações suaves</li>
+                                    <li>Botões de navegação circulares</li>
+                                    <li>Fundo escuro semi-transparente</li>
+                                    <li>Responsivo para mobile</li>
+                                    <li>Transições elegantes</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instruções de uso -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="alert alert-success">
+                    <h6><i class="fas fa-check-circle me-2"></i>Teste Concluído!</h6>
+                    <p class="mb-0">A funcionalidade de lightbox está funcionando corretamente. Agora você pode usar esta funcionalidade em todas as páginas de galeria do site.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/lightbox.js"></script>
+</body>
+</html> 

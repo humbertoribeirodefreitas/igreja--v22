@@ -1,197 +1,105 @@
-# Painel Administrativo - Igreja Admac
+# Sistema Administrativo - Igreja Admac
 
-## 📋 Visão Geral
+## Banco de Dados Temporário
 
-Este é o painel administrativo completo para gerenciar todos os conteúdos do site da Igreja Admac. O sistema permite que administradores cadastrados atualizem facilmente vídeos, carrossel, revista, avisos e outras informações do site.
+Este sistema utiliza um banco de dados temporário implementado em JavaScript para gerenciar autenticação e recuperação de senha.
 
-## 🔐 Acesso ao Sistema
+### Credenciais Padrão
 
-### Credenciais de Login
-- **Usuário:** `admin`
-- **Senha:** `admac2024`
+- **Email:** admacdf@gmail.com
+- **Senha:** admac2024
 
-### URL de Acesso
-```
-/admin/login.html
-```
+### Funcionalidades Implementadas
 
-## 🚀 Funcionalidades
+#### 1. Autenticação
+- Login com email e senha
+- Validação de credenciais
+- Armazenamento de sessão no localStorage
+- Redirecionamento automático para dashboard após login
 
-### 1. Dashboard Principal
-- Visão geral das estatísticas do site
-- Atividades recentes
-- Ações rápidas para gerenciamento
+#### 2. Recuperação de Senha
+- Link "Esqueceu a senha?" na página de login
+- Modal para inserir email
+- Geração de token único de recuperação
+- Validação de token com expiração (1 hora)
+- Redefinição de senha com confirmação
 
-### 2. Gerenciamento de Vídeos
-- ✅ Adicionar novos vídeos do YouTube
-- ✅ Editar vídeos existentes
-- ✅ Excluir vídeos
-- ✅ Visualização em tempo real
-- ✅ Extração automática do ID do embed
+#### 3. Segurança
+- Tokens de recuperação com expiração automática
+- Limpeza automática de tokens expirados
+- Validação de força da senha (mínimo 6 caracteres)
+- Confirmação de senha na redefinição
 
-### 3. Gerenciamento do Carrossel
-- ✅ Adicionar novas imagens
-- ✅ Editar títulos e descrições
-- ✅ Reordenar itens
-- ✅ Upload de imagens
-- ✅ Visualização prévia
-
-### 4. Revista Admac
-- ✅ Atualizar link do Google Drive
-- ✅ Editar título e descrição
-- ✅ Salvar alterações automaticamente
-
-### 5. Gerenciamento de Ministérios
-- ✅ Gerenciar conteúdo de todos os ministérios (Intercessão, Homens, Mulheres, Jovens, Kids, Louvor, Social, Lares, Retiro, EDB)
-- ✅ Editar títulos, subtítulos e descrições
-- ✅ Gerenciar horários e atividades de cada ministério
-- ✅ Controle completo do conteúdo das páginas de ministérios
-
-### 6. Gerenciamento de Galerias
-- ✅ Gerenciar fotos de todas as galerias (Intercessão, Homens, Mulheres, Jovens, Kids, Social)
-- ✅ Adicionar, editar e excluir fotos
-- ✅ Organizar por categorias
-- ✅ Visualização em grid responsivo
-
-### 7. Gerenciamento de Avisos
-- ✅ Adicionar novos avisos
-- ✅ Editar avisos existentes
-- ✅ Upload de imagens para avisos
-- ✅ Ativar/desativar avisos
-
-### 8. Redes Sociais
-- ✅ Gerenciar links do Instagram
-- ✅ Gerenciar links do YouTube
-- ✅ Gerenciar links do Facebook
-- ✅ Gerenciar links do WhatsApp
-- ✅ Gerenciar links do Spotify
-
-### 9. Configurações Gerais
-- ✅ Informações da igreja
-- ✅ Endereço e contato
-- ✅ Configurações do site
-
-## 🛠️ Estrutura de Arquivos
+### Estrutura de Arquivos
 
 ```
 admin/
-├── login.html          # Página de login
-├── dashboard.html      # Painel principal
+├── login.html          # Página de login com recuperação de senha
+├── dashboard.html      # Painel administrativo
 ├── js/
-│   └── admin.js       # Funcionalidades JavaScript
+│   ├── database.js     # Banco de dados temporário
+│   └── admin.js        # Funções do painel administrativo
 └── README.md          # Esta documentação
 ```
 
-## 📱 Interface Responsiva
+### Como Usar
 
-O painel administrativo é totalmente responsivo e funciona em:
-- ✅ Desktop
-- ✅ Tablet
-- ✅ Smartphone
+1. **Login:**
+   - Acesse `admin/login.html`
+   - As credenciais já estão preenchidas automaticamente
+   - Clique em "Entrar"
 
-## 🔧 Tecnologias Utilizadas
+2. **Recuperação de Senha:**
+   - Na página de login, clique em "Esqueceu a senha?"
+   - Digite o email (admacdf@gmail.com)
+   - Clique em "Enviar"
+   - Copie o token gerado
+   - Digite a nova senha e confirme
+   - Clique em "Redefinir Senha"
 
-- **HTML5** - Estrutura
-- **CSS3** - Estilização (Bootstrap 5)
-- **JavaScript** - Funcionalidades
-- **Bootstrap 5** - Framework CSS
-- **Font Awesome** - Ícones
+3. **Dashboard:**
+   - Após login, você será redirecionado para o dashboard
+   - Use o menu lateral para navegar entre as seções
+   - Clique em "Sair" para fazer logout
 
-## 🎨 Design
+### Banco de Dados Temporário
 
-- Interface moderna e intuitiva
-- Sidebar de navegação
-- Cards informativos
-- Modais para edição
-- Alertas de feedback
-- Gradientes e sombras elegantes
+O arquivo `js/database.js` contém:
 
-## 🔒 Segurança
+- **adminUsers:** Array com dados dos usuários administradores
+- **passwordResetTokens:** Array com tokens de recuperação de senha
+- **authenticateUser():** Função para autenticar usuários
+- **generatePasswordResetToken():** Função para gerar tokens de recuperação
+- **validatePasswordResetToken():** Função para validar tokens
+- **resetPassword():** Função para redefinir senhas
+- **cleanupExpiredTokens():** Função para limpar tokens expirados
 
-### Autenticação
-- Sistema de login com credenciais
-- Sessão persistente com localStorage
-- Verificação de autenticação em todas as páginas
+### Observações Importantes
 
-### Dados
-- Dados armazenados em memória (simulação)
-- Em produção, integrar com backend seguro
-- Validação de entrada de dados
+⚠️ **Este é um sistema temporário para desenvolvimento e testes.**
 
-## 📊 Funcionalidades por Seção
+- Os dados são armazenados apenas na memória do navegador
+- Não há persistência de dados entre sessões
+- Em produção, deve ser implementado um backend real com banco de dados
+- As senhas devem ser criptografadas
+- Os tokens devem ser enviados por email real
 
-### Dashboard
-- Estatísticas em tempo real
-- Cards informativos
-- Atividades recentes
-- Ações rápidas
+### Próximos Passos
 
-### Vídeos
-- Lista de vídeos ativos
-- Preview em iframe
-- Formulários de edição
-- Validação de URLs do YouTube
+Para implementar em produção:
 
-### Carrossel
-- Tabela de itens
-- Upload de imagens
-- Reordenação
-- Preview de imagens
+1. Criar backend com Node.js/Express ou PHP
+2. Implementar banco de dados real (MySQL, PostgreSQL, etc.)
+3. Adicionar criptografia de senhas (bcrypt)
+4. Implementar envio de emails reais
+5. Adicionar autenticação JWT
+6. Implementar logs de auditoria
+7. Adicionar validações mais robustas
 
-### Revista
-- Formulário de edição
-- Link do Google Drive
-- Descrição personalizada
-- Salvamento automático
+### Tecnologias Utilizadas
 
-### Ministérios
-- Gerenciamento de todos os ministérios
-- Edição de títulos, descrições e horários
-- Controle de atividades por ministério
-- Interface intuitiva para cada seção
-
-### Galerias
-- Gerenciamento de fotos por categoria
-- Upload e organização de imagens
-- Visualização em grid responsivo
-- Controle de exclusão e edição
-
-### Avisos
-- Cards de avisos
-- Upload de imagens
-- Edição inline
-- Status ativo/inativo
-
-### Redes Sociais
-- Formulários organizados
-- Ícones das redes
-- Validação de URLs
-- Salvamento em lote
-
-## 🚀 Como Usar
-
-1. **Acesse** `/admin/login.html`
-2. **Faça login** com as credenciais
-3. **Navegue** pelas seções no sidebar
-4. **Gerencie** os conteúdos conforme necessário
-5. **Salve** as alterações
-6. **Visualize** as mudanças no site principal
-
-## 🔄 Atualizações Futuras
-
-- [ ] Integração com backend real
-- [ ] Sistema de backup automático
-- [ ] Logs de atividades
-- [ ] Múltiplos usuários
-- [ ] Permissões por nível
-- [ ] Upload de arquivos para servidor
-- [ ] Sistema de notificações
-- [ ] Relatórios e analytics
-
-## 📞 Suporte
-
-Para dúvidas ou problemas com o painel administrativo, entre em contato com o administrador do sistema.
-
----
-
-**Desenvolvido para Igreja Admac** 🏛️ 
+- HTML5
+- CSS3 (Bootstrap 5)
+- JavaScript (ES6+)
+- Font Awesome (ícones)
+- LocalStorage (sessão temporária) 

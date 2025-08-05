@@ -351,7 +351,8 @@
         }
 
         // Mostrar usuário logado
-        document.getElementById('adminUser').textContent = localStorage.getItem('adminUser') || 'Admin';
+        const adminUser = JSON.parse(localStorage.getItem('adminUser') || '{}');
+        document.getElementById('adminUser').textContent = adminUser.name || adminUser.username || 'Admin';
 
         // Navegação
         document.querySelectorAll('.nav-link').forEach(link => {

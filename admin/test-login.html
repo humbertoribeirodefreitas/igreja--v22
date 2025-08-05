@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Login - Igreja Admac</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .test-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 100%;
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-card">
+        <div class="text-center mb-4">
+            <h4>Teste do Sistema de Login</h4>
+            <p class="text-muted">Banco de Dados Temporário</p>
+        </div>
+        
+        <div id="testResults"></div>
+        
+        <div class="text-center mt-4">
+            <a href="login.html" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt me-2"></i>Ir para Login
+            </a>
+        </div>
+    </div>
+
+    <script src="js/database.js"></script>
+    <script>
+        function runTests() {
+            const results = [];
+            
+            // Teste 1: Autenticação com credenciais corretas
+            const auth1 = databaseFunctions.authenticateUser('admacdf@gmail.com', 'admac2024');
+            results.push({
+                test: 'Login com credenciais corretas',
+                success: auth1.success,
+                message: auth1.success ? '✅ Passou' : '❌ Falhou'
+            });
+            
+            // Teste 2: Autenticação com credenciais incorretas
+            const auth2 = databaseFunctions.authenticateUser('admacdf@gmail.com', 'senhaerrada');
+            results.push({
+                test: 'Login com senha incorreta',
+                success: !auth2.success,
+                message: !auth2.success ? '✅ Passou' : '❌ Falhou'
+            });
+            
+            // Teste 3: Geração de token de recuperação
+            const token1 = databaseFunctions.generatePasswordResetToken('admacdf@gmail.com');
+            results.push({
+                test: 'Geração de token de recuperação',
+                success: token1.success,
+                message: token1.success ? '✅ Passou' : '❌ Falhou'
+            });
+            
+            // Teste 4: Geração de token com email inexistente
+            const token2 = databaseFunctions.generatePasswordResetToken('email@inexistente.com');
+            results.push({
+                test: 'Token com email inexistente',
+                success: !token2.success,
+                message: !token2.success ? '✅ Passou' : '❌ Falhou'
+            });
+            
+            // Teste 5: Validação de token válido
+            if (token1.success) {
+                const validate1 = databaseFunctions.validatePasswordResetToken(token1.token);
+                results.push({
+                    test: 'Validação de token válido',
+                    success: validate1.success,
+                    message: validate1.success ? '✅ Passou' : '❌ Falhou'
+                });
+                
+                // Teste 6: Redefinição de senha
+                const reset1 = databaseFunctions.resetPassword(token1.token, 'novaSenha123');
+                results.push({
+                    test: 'Redefinição de senha',
+                    success: reset1.success,
+                    message: reset1.success ? '✅ Passou' : '❌ Falhou'
+                });
+            }
+            
+            // Exibir resultados
+            const resultsDiv = document.getElementById('testResults');
+            resultsDiv.innerHTML = `
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="mb-0">Resultados dos Testes</h6>
+                    </div>
+                    <div class="card-body">
+                        ${results.map(result => `
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span>${result.test}</span>
+                                <span class="badge ${result.success ? 'bg-success' : 'bg-danger'}">${result.message}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Executar testes quando a página carregar
+        document.addEventListener('DOMContentLoaded', runTests);
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
