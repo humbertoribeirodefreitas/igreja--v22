@@ -42,6 +42,105 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+  
+  // Função para adicionar links individuais à playlist
+  window.adicionarLinkIndividual = function(playlistId) {
+    const modal = new bootstrap.Modal(document.getElementById('modalLinkIndividual'));
+    document.getElementById('playlistIdInput').value = playlistId;
+    document.getElementById('videoIndexInput').value = '';
+    document.getElementById('tituloVideoInput').value = '';
+    document.getElementById('linkVideoInput').value = '';
+    document.getElementById('modalLinkIndividualTitle').textContent = 'Adicionar Link Individual';
+    document.getElementById('btnSalvarLinkIndividual').textContent = 'Adicionar';
+    modal.show();
+  }
+  
+  // Função para editar links individuais
+  window.editarLinkIndividual = function(playlistId, videoIndex) {
+    const playlists = JSON.parse(localStorage.getItem('playlists')) || [];
+    const playlist = playlists.find(p => p.playlistId === playlistId);
+    
+    if (playlist && playlist.videos && playlist.videos[videoIndex]) {
+      const video = playlist.videos[videoIndex];
+      const modal = new bootstrap.Modal(document.getElementById('modalLinkIndividual'));
+      document.getElementById('playlistIdInput').value = playlistId;
+      document.getElementById('videoIndexInput').value = videoIndex;
+      document.getElementById('tituloVideoInput').value = video.titulo;
+      document.getElementById('linkVideoInput').value = video.link;
+      document.getElementById('modalLinkIndividualTitle').textContent = 'Editar Link Individual';
+      document.getElementById('btnSalvarLinkIndividual').textContent = 'Salvar Alterações';
+      modal.show();
+    }
+  }
+  
+  // Função para remover links individuais
+  window.removerLinkIndividual = function(playlistId, videoIndex) {
+    if (confirm('Tem certeza que deseja remover este link individual?')) {
+      const playlists = JSON.parse(localStorage.getItem('playlists')) || [];
+      const playlistIndex = playlists.findIndex(p => p.playlistId === playlistId);
+      
+      if (playlistIndex !== -1 && playlists[playlistIndex].videos) {
+        playlists[playlistIndex].videos.splice(videoIndex, 1);
+        localStorage.setItem('playlists', JSON.stringify(playlists));
+        renderizarAulas();
+      }
+    }
+  }
+  
+  // Salvar link individual na playlist
+  const formLinkIndividual = document.getElementById('formLinkIndividual');
+  if (formLinkIndividual) {
+    formLinkIndividual.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const playlistId = document.getElementById('playlistIdInput').value;
+      const videoIndex = document.getElementById('videoIndexInput').value;
+      const tituloVideo = document.getElementById('tituloVideoInput').value.trim();
+      const linkVideo = document.getElementById('linkVideoInput').value.trim();
+      
+      // Salvar o link individual
+      let playlists = JSON.parse(localStorage.getItem('playlists')) || [];
+      const playlistIndex = playlists.findIndex(p => p.playlistId === playlistId);
+      
+      if (videoIndex === '') {
+        // Adicionar novo vídeo
+        if (playlistIndex !== -1) {
+          if (!playlists[playlistIndex].videos) {
+            playlists[playlistIndex].videos = [];
+          }
+          
+          playlists[playlistIndex].videos.push({
+            titulo: tituloVideo,
+            link: linkVideo,
+            ordem: playlists[playlistIndex].videos.length + 1
+          });
+          
+          localStorage.setItem('playlists', JSON.stringify(playlists));
+          
+          // Fechar modal e mostrar mensagem
+          bootstrap.Modal.getInstance(document.getElementById('modalLinkIndividual')).hide();
+          alert('Link individual adicionado com sucesso!');
+        }
+      } else {
+        // Atualizar vídeo existente
+        if (playlistIndex !== -1 && playlists[playlistIndex].videos) {
+          playlists[playlistIndex].videos[videoIndex] = {
+            titulo: tituloVideo,
+            link: linkVideo,
+            ordem: parseInt(videoIndex) + 1
+          };
+          
+          localStorage.setItem('playlists', JSON.stringify(playlists));
+          
+          // Fechar modal e mostrar mensagem
+          bootstrap.Modal.getInstance(document.getElementById('modalLinkIndividual')).hide();
+          alert('Link individual atualizado com sucesso!');
+        }
+      }
+      
+      // Atualizar a lista de aulas
+      renderizarAulas();
+    });
+  }
 
   // Painel Super Admin
   if (document.getElementById('tabelaProfessores')) {
@@ -487,21 +586,57 @@ function renderizarAulas() {
   if (!lista) return;
   lista.innerHTML = '';
   aulas.forEach((aula, idx) => {
+    // Verificar se é uma playlist e obter informações adicionais
+    let playlistInfo = '';
+    let linksIndividuais = '';
+    if (aula.isPlaylist && aula.playlistId) {
+      const playlists = JSON.parse(localStorage.getItem('playlists')) || [];
+      const playlist = playlists.find(p => p.playlistId === aula.playlistId);
+      if (playlist && playlist.videos && playlist.videos.length > 0) {
+        playlistInfo = `<br><span class="badge bg-info">${playlist.videos.length} vídeos na playlist</span>`;
+        
+        // Adicionar lista de links individuais
+        linksIndividuais = '<div class="mt-2"><h6>Links individuais:</h6><ul class="list-group list-group-flush">';
+        playlist.videos.forEach((video, vidIdx) => {
+          linksIndividuais += `
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                <strong>${video.titulo}</strong>
+                <small class="d-block text-truncate" style="max-width: 300px;">${video.link}</small>
+              </div>
+              <div>
+                <button class="btn btn-sm btn-outline-primary me-1" onclick="editarLinkIndividual('${aula.playlistId}', ${vidIdx})">Editar</button>
+                <button class="btn btn-sm btn-outline-danger" onclick="removerLinkIndividual('${aula.playlistId}', ${vidIdx})">Remover</button>
+              </div>
+            </li>
+          `;
+        });
+        linksIndividuais += '</ul></div>';
+      } else {
+        playlistInfo = `<br><span class="badge bg-warning">Playlist sem vídeos individuais</span>`;
+      }
+    }
+    
     lista.innerHTML += `
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <span>
+      <li class="list-group-item">
+        <div>
           ${aula.capa ? `<img src="${aula.capa}" alt="Capa" style="max-width:60px;max-height:80px;margin-right:8px;vertical-align:middle;">` : ''}
           <strong>${aula.titulo}</strong> <br>
           <a href="${aula.link}" target="_blank">Ver vídeo</a>
           ${aula.materiais && aula.materiais.length ? '<br>Materiais: ' + aula.materiais.map((m, i) => `<a href="${m.url}" download>${m.nome}</a>`).join(', ') : ''}
           <br><span class="badge bg-${aula.liberada ? 'success' : 'secondary'}">${aula.liberada ? 'Liberada' : 'Não liberada'}</span>
-        </span>
-        <span>
+          ${aula.isPlaylist ? `<span class="badge bg-primary ms-1">Playlist</span>${playlistInfo}` : ''}
+        </div>
+        
+        ${linksIndividuais}
+        
+        <div class="mt-2">
           <button class="btn btn-sm btn-warning me-1" onclick="editarAula(${idx})">Editar</button>
-          <button class="btn btn-sm btn-danger" onclick="excluirAula(${idx})">Excluir</button>
-          <button class="btn btn-sm btn-info ms-1" onclick="gerarPaginaAula(${idx})">Gerar Página</button>
-          <button class="btn btn-sm btn-${aula.liberada ? 'secondary' : 'success'} ms-1" onclick="toggleLiberarAula(${idx})">${aula.liberada ? 'Bloquear' : 'Liberar'}</button>
-        </span>
+          <button class="btn btn-sm btn-danger me-1" onclick="excluirAula(${idx})">Excluir</button>
+          <button class="btn btn-sm btn-info me-1" onclick="gerarPaginaAula(${idx})">Gerar Página</button>
+          <button class="btn btn-sm btn-${aula.liberada ? 'secondary' : 'success'} me-1" onclick="toggleLiberarAula(${idx})">${aula.liberada ? 'Bloquear' : 'Liberar'}</button>
+          ${aula.isPlaylist && aula.playlistId ? `<button class="btn btn-sm btn-primary" onclick="adicionarLinkIndividual('${aula.playlistId}')">+ Link Individual</button>` : ''}
+        </div>
       </li>
     `;
   });
@@ -585,8 +720,41 @@ window.removerMaterialTemp = function(idx) {
 function salvarAula(titulo, link, materiais) {
   const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
   let aulas = JSON.parse(localStorage.getItem('aulas')) || [];
-  aulas.push({ titulo, link, materiais, professor: usuario.usuario, liberada: false, capa: capaTemp });
+  let playlists = JSON.parse(localStorage.getItem('playlists')) || [];
+  
+  // Verificar se o link é uma playlist
+  const isPlaylist = link.includes('playlist') || link.includes('list=');
+  const playlistId = isPlaylist && link.includes('list=') ? link.split('list=')[1].split('&')[0] : null;
+  
+  // Salvar como aula normal
+  const novaAula = { 
+    titulo, 
+    link, 
+    materiais, 
+    professor: usuario.usuario, 
+    liberada: false, 
+    capa: capaTemp,
+    isPlaylist: isPlaylist,
+    playlistId: playlistId,
+    linkIndividual: null // Para links individuais
+  };
+  
+  aulas.push(novaAula);
   localStorage.setItem('aulas', JSON.stringify(aulas));
+  
+  // Se for playlist, salvar na estrutura de playlists também
+  if (isPlaylist && playlistId) {
+    const playlistExistente = playlists.find(p => p.playlistId === playlistId);
+    if (!playlistExistente) {
+      playlists.push({
+        playlistId: playlistId,
+        titulo: titulo,
+        professor: usuario.usuario,
+        videos: [] // Será preenchido quando o professor adicionar links individuais
+      });
+      localStorage.setItem('playlists', JSON.stringify(playlists));
+    }
+  }
 }
 
 function renderizarAlunos() {
@@ -622,23 +790,59 @@ function renderizarAvaliacoes() {
 // Funções do Painel Aluno
 function renderizarAulasAluno() {
   const aulas = (JSON.parse(localStorage.getItem('aulas')) || []).filter(a => a.liberada);
+  const playlists = JSON.parse(localStorage.getItem('playlists')) || [];
   const lista = document.getElementById('listaAulasAluno');
   const select = document.getElementById('aulaAtividade');
   if (!lista || !select) return;
   lista.innerHTML = '';
   select.innerHTML = '';
+  
   aulas.forEach((aula, idx) => {
     let videoEmbed = '';
-    if (aula.link) {
-      if (aula.link.includes('youtube.com') || aula.link.includes('youtu.be')) {
-        let videoId = '';
-        if (aula.link.includes('watch?v=')) videoId = aula.link.split('watch?v=')[1].split('&')[0];
-        else if (aula.link.includes('youtu.be/')) videoId = aula.link.split('youtu.be/')[1].split('?')[0];
-        videoEmbed = `<iframe width='100%' height='250' src='https://www.youtube.com/embed/${videoId}' frameborder='0' allowfullscreen></iframe>`;
-      } else if (aula.link.endsWith('.mp4')) {
-        videoEmbed = `<video width='100%' height='250' controls><source src='${aula.link}' type='video/mp4'></video>`;
+    let playlistVideos = '';
+    
+    // Verificar se é uma playlist
+    if (aula.isPlaylist && aula.playlistId) {
+      const playlist = playlists.find(p => p.playlistId === aula.playlistId);
+      
+      // Criar embed para a playlist
+      if (aula.link) {
+        if (aula.link.includes('youtube.com') || aula.link.includes('youtu.be')) {
+          let videoId = '';
+          if (aula.link.includes('watch?v=')) videoId = aula.link.split('watch?v=')[1].split('&')[0];
+          else if (aula.link.includes('youtu.be/')) videoId = aula.link.split('youtu.be/')[1].split('?')[0];
+          videoEmbed = `<iframe width='100%' height='250' src='https://www.youtube.com/embed/${videoId}?list=${aula.playlistId}' frameborder='0' allowfullscreen></iframe>`;
+        } else if (aula.link.endsWith('.mp4')) {
+          videoEmbed = `<video width='100%' height='250' controls><source src='${aula.link}' type='video/mp4'></video>`;
+        }
+      }
+      
+      // Adicionar links individuais se existirem
+      if (playlist && playlist.videos && playlist.videos.length > 0) {
+        playlistVideos = '<div class="mt-3"><h6>Vídeos da Playlist:</h6><div class="list-group">';
+        playlist.videos.forEach(video => {
+          playlistVideos += `
+            <a href="${video.link}" target="_blank" class="list-group-item list-group-item-action">
+              ${video.titulo}
+            </a>
+          `;
+        });
+        playlistVideos += '</div></div>';
+      }
+    } else {
+      // Aula normal (não é playlist)
+      if (aula.link) {
+        if (aula.link.includes('youtube.com') || aula.link.includes('youtu.be')) {
+          let videoId = '';
+          if (aula.link.includes('watch?v=')) videoId = aula.link.split('watch?v=')[1].split('&')[0];
+          else if (aula.link.includes('youtu.be/')) videoId = aula.link.split('youtu.be/')[1].split('?')[0];
+          videoEmbed = `<iframe width='100%' height='250' src='https://www.youtube.com/embed/${videoId}' frameborder='0' allowfullscreen></iframe>`;
+        } else if (aula.link.endsWith('.mp4')) {
+          videoEmbed = `<video width='100%' height='250' controls><source src='${aula.link}' type='video/mp4'></video>`;
+        }
       }
     }
+    
     let materiaisHtml = '';
     if (aula.materiais && aula.materiais.length) {
       materiaisHtml = '<div class="mt-2">';
@@ -647,12 +851,15 @@ function renderizarAulasAluno() {
       });
       materiaisHtml += '</div>';
     }
+    
     lista.innerHTML += `
       <div class="card mb-3">
         <div class="card-body">
           ${aula.capa ? `<img src="${aula.capa}" alt="Capa" style="max-width:80px;max-height:100px;float:right;margin-left:10px;">` : ''}
           <h5 class="card-title">${aula.titulo}</h5>
+          ${aula.isPlaylist ? '<span class="badge bg-primary mb-2">Playlist</span>' : ''}
           <div class="mb-2">${videoEmbed}</div>
+          ${playlistVideos}
           ${materiaisHtml}
         </div>
       </div>
@@ -918,4 +1125,4 @@ window.abrirJustificativaAluno = function(ano, mes, dia) {
   document.getElementById('justTexto').value = justificativa;
   const modal = new bootstrap.Modal(document.getElementById('modalJustificativaAluno'));
   modal.show();
-} 
+}
